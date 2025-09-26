@@ -76,6 +76,27 @@ const appointmentSchema = new mongoose.Schema({
 });
 const Appointment = mongoose.model('Appointment', appointmentSchema);
 
+const bloodBankSchema = new mongoose.Schema({
+    type: { type: String, enum: ['request', 'donate'], required: true },
+    // Request fields
+    patientName: String,
+    bloodType: String,
+    unitsNeeded: Number,
+    urgency: String,
+    hospital: String,
+    contactPhone: String,
+    // Donation fields
+    donorName: String,
+    donorBloodType: String,
+    donorAge: Number,
+    donorWeight: Number,
+    lastDonation: Date,
+    donorPhone: String,
+    donorAddress: String,
+    createdAt: { type: Date, default: Date.now }
+});
+const BloodBank = mongoose.model('BloodBank', bloodBankSchema);
+
 // API endpoint for Doctor Consultation
 app.post('/api/consult', async (req, res) => {
   try {
@@ -175,6 +196,50 @@ app.post('/api/appointment', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Error booking appointment.' });
+    }
+});
+
+app.post('/api/bloodbank', async (req, res) => {
+    try {
+        const data = req.body;
+        
+        if (data.type === 'request') {
+            const { patientName, bloodType, unitsNeeded, urgency, hospital, contactPhone } = data;
+            if (!patientName || !bloodType || !unitsNeeded || !urgency || !hospital || !contactPhone) {
+                return res.status(400).json({ message: 'Missing required fields for blood request' });
+            }
+            await BloodBank.create({
+                type: 'request',
+                patientName,
+                bloodType,
+                unitsNeeded,
+                urgency,
+                hospital,
+                contactPhone
+            });
+            res.json({ message: 'Blood request submitted successfully!' });
+        } else if (data.type === 'donate') {
+            const { donorName, donorBloodType, donorAge, donorWeight, lastDonation, donorPhone, donorAddress } = data;
+            if (!donorName || !donorBloodType || !donorAge || !donorWeight || !donorPhone || !donorAddress) {
+                return res.status(400).json({ message: 'Missing required fields for donor registration' });
+            }
+            await BloodBank.create({
+                type: 'donate',
+                donorName,
+                donorBloodType,
+                donorAge,
+                donorWeight,
+                lastDonation: lastDonation || null,
+                donorPhone,
+                donorAddress
+            });
+            res.json({ message: 'Donor registration successful!' });
+        } else {
+            return res.status(400).json({ message: 'Invalid request type' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error processing blood bank request.' });
     }
 });
 
