@@ -3,100 +3,131 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: #f9fdfb;
   color: #222;
+  overflow-x: hidden;
 }
 
 /* Title Section */
 .hero-header {
   text-align: center;
-  padding: 30px 10px 10px;
+  padding: 20px 15px 10px;
 }
 .main-title {
-  font-size: 52px;
+  font-size: clamp(32px, 8vw, 52px);
   font-weight: 800;
   background: linear-gradient(90deg, #20c997, #0d6efd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  margin: 0;
 }
 .subtitle {
-  font-size: 18px;
+  font-size: clamp(14px, 4vw, 18px);
   color: #666;
+  margin: 10px 0;
+  padding: 0 10px;
 }
 
 /* Navbar */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   background: linear-gradient(90deg, #198754, #157347);
-  padding: 12px 20px;
+  padding: 12px 15px;
+  gap: 10px;
 }
 .nav-links, .nav-right {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 15px;
+  gap: 8px;
+  justify-content: center;
 }
 .navbar a {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  padding: 8px 14px;
+  padding: 8px 12px;
   border-radius: 6px;
   transition: 0.3s;
+  font-size: clamp(12px, 3vw, 14px);
+  white-space: nowrap;
 }
 .navbar a:hover {
   background: rgba(255,255,255,0.15);
 }
 .navbar select {
-  margin-left: 15px;
+  margin: 5px;
   padding: 6px 10px;
   border-radius: 6px;
   border: none;
   font-weight: bold;
+  font-size: 12px;
 }
 
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 60px 20px;
   background: linear-gradient(to right, #20c997, #0d6efd);
   color: white;
   border-radius: 0 0 40px 40px;
 }
-.hero h2 { font-size: 38px; margin-bottom: 15px; }
-.hero p { font-size: 18px; margin-bottom: 22px; }
+.hero h2 { 
+  font-size: clamp(24px, 6vw, 38px); 
+  margin-bottom: 15px; 
+  padding: 0 10px;
+}
+.hero p { 
+  font-size: clamp(14px, 4vw, 18px); 
+  margin-bottom: 22px; 
+  padding: 0 15px;
+}
 .btn {
   background: linear-gradient(90deg, #69f0ae, #00acc1);
   border: none;
-  padding: 12px 25px;
+  padding: 12px 20px;
   border-radius: 25px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: clamp(14px, 3.5vw, 16px);
   color: #111;
   cursor: pointer;
   transition: 0.3s;
+  margin: 0 10px;
 }
 .btn:hover { transform: scale(1.05); }
 
 /* Features */
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  padding: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px 15px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .card {
   background: white;
-  padding: 25px;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
   transition: 0.3s;
 }
 .card i {
-  font-size: 40px;
+  font-size: clamp(32px, 8vw, 40px);
   color: #20c997;
   margin-bottom: 12px;
+}
+.card h3 {
+  font-size: clamp(16px, 4vw, 20px);
+  margin: 10px 0;
+}
+.card p {
+  font-size: clamp(13px, 3.5vw, 15px);
+  line-height: 1.5;
+  margin: 0;
 }
 .card:hover {
   transform: translateY(-8px);
@@ -108,7 +139,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
+  padding: 30px 15px;
   background: #f0faf7;
   min-height: 90vh;
 }
@@ -116,39 +147,45 @@ body {
 .consult-card {
   background: white;
   width: 100%;
-  max-width: 500px;
-  padding: 30px;
+  max-width: 450px;
+  padding: 25px 20px;
   border-radius: 15px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
   animation: fadeIn 0.8s ease;
+  margin: 0 10px;
 }
 
 .consult-card h2 {
   text-align: center;
   margin-bottom: 15px;
   color: #20c997;
+  font-size: clamp(20px, 5vw, 24px);
 }
 
 .consult-card p {
   text-align: center;
   color: #666;
   margin-bottom: 20px;
+  font-size: clamp(13px, 3.5vw, 15px);
 }
 
 .consult-card label {
   font-weight: bold;
   display: block;
   margin: 10px 0 5px;
+  font-size: clamp(13px, 3.5vw, 15px);
 }
 
 .consult-card input,
 .consult-card textarea {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 10px;
   margin-bottom: 15px;
   transition: 0.3s;
+  font-size: clamp(13px, 3.5vw, 15px);
+  box-sizing: border-box;
 }
 
 .consult-card input:focus,
@@ -159,7 +196,7 @@ body {
 
 .consult-card textarea {
   resize: none;
-  height: 100px;
+  height: 80px;
 }
 
 .consult-card .btn {
@@ -167,10 +204,10 @@ body {
   background: linear-gradient(90deg, #20c997, #0d6efd);
   color: white;
   border: none;
-  padding: 12px;
+  padding: 12px 10px;
   border-radius: 25px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: clamp(14px, 3.5vw, 16px);
   cursor: pointer;
   transition: 0.3s;
 }
@@ -184,30 +221,42 @@ body {
 .login-card {
   background: #fff;
   width: 100%;
-  max-width: 400px;
-  padding: 30px;
+  max-width: 380px;
+  padding: 25px 20px;
   border-radius: 15px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
   animation: fadeIn 0.8s ease;
+  margin: 0 10px;
 }
 .login-card h2 {
   text-align: center;
   color: #0d6efd;
   margin-bottom: 20px;
+  font-size: clamp(20px, 5vw, 24px);
+}
+.login-header p {
+  font-size: clamp(13px, 3.5vw, 15px);
+  text-align: center;
+  color: #666;
+}
+.login-footer p {
+  font-size: clamp(12px, 3vw, 14px);
+  text-align: center;
+  margin-top: 15px;
 }
 
 /* SOS Button */
 .sos-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 15px;
+  right: 15px;
   background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 65px;
-  height: 65px;
-  font-size: 1.1em;
+  width: clamp(55px, 12vw, 65px);
+  height: clamp(55px, 12vw, 65px);
+  font-size: clamp(0.8em, 2.5vw, 1.1em);
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   cursor: pointer;
@@ -220,7 +269,7 @@ body {
   transition: 0.3s;
 }
 .sos-button i {
-  font-size: 1.5em;
+  font-size: clamp(1.2em, 3vw, 1.5em);
   margin-bottom: 2px;
 }
 .sos-button:hover {
@@ -236,21 +285,26 @@ body {
 /* Contact Info Section */
 .contact-info {
   background: #fff;
-  padding: 20px;
+  padding: 20px 15px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   margin-top: 30px;
   text-align: center;
 }
+.contact-info h3 {
+  font-size: clamp(18px, 4.5vw, 22px);
+  margin-bottom: 15px;
+}
 .contact-info p {
   margin: 10px 0;
-  font-size: 16px;
+  font-size: clamp(14px, 3.5vw, 16px);
   color: #444;
 }
 .contact-info a {
   color: #0d6efd;
   text-decoration: none;
   font-weight: 500;
+  word-break: break-all;
 }
 .contact-info a:hover {
   text-decoration: underline;
@@ -258,9 +312,9 @@ body {
 
 /* Admin Panel Styles */
 .admin-container {
-    max-width: 800px;
-    margin: 60px auto;
-    padding: 30px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px 15px;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -269,17 +323,20 @@ body {
     text-align: center;
     color: #198754;
     margin-bottom: 20px;
+    font-size: clamp(20px, 5vw, 26px);
 }
 #userList {
     list-style-type: none;
     padding: 0;
 }
 #userList li {
-    padding: 15px;
+    padding: 12px;
     border-bottom: 1px solid #eee;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 #userList li:last-child {
     border-bottom: none;
@@ -287,18 +344,23 @@ body {
 .user-details {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+}
+.user-details strong {
+    font-size: clamp(14px, 3.5vw, 16px);
 }
 .user-details span {
-    font-size: 14px;
+    font-size: clamp(12px, 3vw, 14px);
     color: #666;
 }
 
 /* Specific Page Styles - Consolidated */
 .form-container {
-  max-width: 500px;
-  margin: 60px auto;
+  max-width: 480px;
+  margin: 30px auto;
   background: #fff;
-  padding: 30px;
+  padding: 25px 20px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
@@ -306,6 +368,14 @@ body {
 .form-container h2 {
   text-align: center;
   color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: clamp(20px, 5vw, 24px);
+}
+
+.form-container p {
+  text-align: center;
+  color: #666;
+  font-size: clamp(13px, 3.5vw, 15px);
   margin-bottom: 20px;
 }
 
@@ -317,6 +387,7 @@ body {
   font-weight: bold;
   display: block;
   margin-bottom: 6px;
+  font-size: clamp(13px, 3.5vw, 15px);
 }
 
 .form-group input, .form-group select {
@@ -325,6 +396,8 @@ body {
   border: 1px solid #ccc;
   border-radius: 6px;
   transition: 0.3s;
+  font-size: clamp(13px, 3.5vw, 15px);
+  box-sizing: border-box;
 }
 
 .form-container input:focus, .form-container select:focus, .form-container textarea:focus {
@@ -340,7 +413,7 @@ body {
   border-radius: 6px;
   background: #007bff;
   color: #fff;
-  font-size: 16px;
+  font-size: clamp(14px, 3.5vw, 16px);
   cursor: pointer;
   transition: 0.3s;
 }
@@ -352,13 +425,15 @@ body {
 .map-placeholder {
   margin-top: 20px;
   background: #e9ecef;
-  height: 200px;
+  height: clamp(150px, 30vw, 200px);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #666;
-  font-size: 18px;
+  font-size: clamp(14px, 4vw, 18px);
+  text-align: center;
+  padding: 10px;
 }
 
 .info-box {
@@ -367,6 +442,7 @@ body {
   border-left: 5px solid #28a745;
   border-radius: 6px;
   display: none;
+  font-size: clamp(13px, 3.5vw, 15px);
 }
 
 .info-box i {
@@ -408,3 +484,90 @@ body {
 .pharmacy-form-button:hover { background: linear-gradient(90deg, #0d6efd, #20c997); }
 .pharmacy-info-box { background: #d1f7e2; border-left-color: #20c997; color: #0f5132; }
 .pharmacy-info-box i { color: #20c997; }
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px 10px;
+  }
+  
+  .nav-links {
+    order: 1;
+    margin-bottom: 10px;
+  }
+  
+  .nav-right {
+    order: 2;
+  }
+  
+  .features {
+    grid-template-columns: 1fr;
+    padding: 20px 10px;
+  }
+  
+  .hero {
+    padding: 40px 15px;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .form-container, .consult-card, .login-card {
+    margin: 15px 10px;
+    padding: 20px 15px;
+  }
+  
+  .admin-container {
+    margin: 15px 10px;
+    padding: 15px 10px;
+  }
+  
+  #userList li {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .user-details {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar a {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  
+  .main-title {
+    font-size: 28px;
+  }
+  
+  .hero h2 {
+    font-size: 22px;
+  }
+  
+  .hero p {
+    font-size: 14px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  
+  .card {
+    padding: 15px;
+  }
+  
+  .sos-button {
+    width: 50px;
+    height: 50px;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .contact-info a {
+    word-break: break-word;
+  }
+}
