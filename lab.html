@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Lab Test - Mediconnect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <div class="form-container lab-container">
+    <h2><i class="fa-solid fa-vials"></i> Book a Lab Test</h2>
+    <p>We come to your home for sample collection</p>
+    <form id="labForm">
+      <div class="form-group">
+        <label for="testType">Test Type</label>
+        <input type="text" id="testType" name="testType" placeholder="Enter test type (e.g. Blood, X-Ray)" required>
+      </div>
+      <div class="form-group">
+        <label for="testDate">Preferred Date</label>
+        <input type="date" id="testDate" name="testDate" required>
+      </div>
+      <div class="form-group">
+        <label for="labAddress">Address</label>
+        <input type="text" id="labAddress" name="labAddress" placeholder="Enter full address" required>
+      </div>
+      <div class="form-group">
+        <label for="phoneLab">Phone Number</label>
+        <input type="tel" id="phoneLab" name="phone" placeholder="10-digit number" required pattern="[0-9]{10}">
+      </div>
+      <button type="submit" class="form-button lab-form-button"><i class="fa-solid fa-flask-vial"></i> Book Test</button>
+    </form>
+    <div class="info-box lab-info-box" id="labConfirmation">
+      <i class="fa-solid fa-check-circle"></i> Lab test booked successfully!
+    </div>
+  </div>
+  <script>
+    const labForm = document.getElementById('labForm');
+    const labConfirmation = document.getElementById('labConfirmation');
+    labForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const testType = labForm.testType.value;
+      const testDate = labForm.testDate.value;
+      const labAddress = labForm.labAddress.value;
+      const phone = labForm.phone.value;
+      try {
+        const response = await fetch('/api/lab', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ testType, testDate, labAddress, phone })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          labConfirmation.style.display = 'block';
+          labForm.reset();
+        } else {
+          alert('Error: ' + data.message);
+        }
+      } catch (err) {
+        alert('Failed to book test. Please check the server.');
+      }
+    });
+  </script>
+</body>
+</html>

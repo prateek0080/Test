@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Appointment - Mediconnect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <div class="form-container appointment-container">
+    <h2><i class="fa-solid fa-user-doctor"></i> Book a Doctor Appointment</h2>
+    <p style="text-align:center; color:#555;">Choose department and preferred date</p>
+    <form id="appointmentForm">
+      <div class="form-group">
+        <label for="patientName">Your Name</label>
+        <input type="text" id="patientName" name="patientName" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label for="department">Department</label>
+        <select id="department" name="department" required>
+          <option value="">-- Select Department --</option>
+          <option>Cardiology</option>
+          <option>Dermatology</option>
+          <option>Orthopedics</option>
+          <option>Neurology</option>
+          <option>General Physician</option>
+          <option>Pediatrics</option>
+          <option>Gynecology</option>
+          <option>ENT</option>
+          <option>Ophthalmology</option>
+          <option>Psychiatry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="appointmentDate">Preferred Date</label>
+        <input type="date" id="appointmentDate" name="appointmentDate" required>
+      </div>
+      <div class="form-group">
+        <label for="phoneAppointment">Contact Number</label>
+        <input type="tel" id="phoneAppointment" name="phoneAppointment" placeholder="Enter phone number" required pattern="[0-9]{10}">
+      </div>
+      <button type="submit" class="form-button appointment-form-button"><i class="fa-solid fa-calendar-check"></i> Book Appointment</button>
+    </form>
+    <div class="info-box appointment-info-box" id="appointmentConfirmation">
+      <i class="fa-solid fa-check-circle"></i> Appointment booked! You will receive a confirmation soon.
+    </div>
+  </div>
+  <script>
+    const appointmentForm = document.getElementById('appointmentForm');
+    const appointmentConfirmation = document.getElementById('appointmentConfirmation');
+    appointmentForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const patientName = appointmentForm.patientName.value;
+      const department = appointmentForm.department.value;
+      const appointmentDate = appointmentForm.appointmentDate.value;
+      const phoneAppointment = appointmentForm.phoneAppointment.value;
+      try {
+        const response = await fetch('/api/appointment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ patientName, department, appointmentDate, phoneAppointment })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          appointmentConfirmation.style.display = 'block';
+          appointmentForm.reset();
+        } else {
+          alert('Error: ' + data.message);
+        }
+      } catch (err) {
+        alert('Failed to book appointment. Please check the server.');
+      }
+    });
+  </script>
+</body>
+</html>

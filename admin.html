@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Mediconnect</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .admin-container h2 {
+            text-align: center;
+            color: #198754;
+            margin-bottom: 20px;
+        }
+        #userList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #userList li {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #userList li:last-child {
+            border-bottom: none;
+        }
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+        .user-details span {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h2><i class="fa-solid fa-users-cog"></i> Registered Users</h2>
+        <ul id="userList">
+            </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchUsers);
+
+        async function fetchUsers() {
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '<li>Loading users...</li>';
+
+            try {
+                const response = await fetch('/admin/users');
+                const users = await response.json();
+
+                userList.innerHTML = '';
+                if (users.length === 0) {
+                    userList.innerHTML = '<li>No users have registered yet.</li>';
+                } else {
+                    users.forEach(user => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <div class="user-details">
+                                <strong>${user.name || 'N/A'}</strong>
+                                <span>${user.email}</span>
+                            </div>
+                            <small>Registered: ${new Date(user.createdAt).toLocaleDateString()}</small>
+                        `;
+                        userList.appendChild(li);
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching users:', error);
+                userList.innerHTML = '<li>Error fetching data. Please check the server.</li>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Consultation - Mediconnect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <div class="consult-section">
+    <div class="consult-card">
+      <h2><i class="fa-solid fa-user-md"></i> Doctor Consultation</h2>
+      <p>Connect instantly with a qualified doctor for expert advice.</p>
+      <form id="consultForm">
+        <label>Full Name</label>
+        <input name="name" type="text" placeholder="Enter your name" required>
+        <label>Email</label>
+        <input name="email" type="email" placeholder="Enter your email" required>
+        <label>Phone (optional)</label>
+        <input name="phone" type="text" placeholder="Enter your phone">
+        <label>Symptoms</label>
+        <textarea name="symptoms" placeholder="Describe your symptoms..." required></textarea>
+        <button type="submit" class="btn">Start Consultation</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    const form = document.getElementById('consultForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = form.name.value;
+      const email = form.email.value;
+      const phone = form.phone.value || null;
+      const symptoms = form.symptoms.value;
+      try {
+        const response = await fetch('/api/consult', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, symptoms })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          alert('Request submitted. We will contact you soon.');
+          form.reset();
+        } else {
+          alert('Error: ' + data.message);
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Failed to submit. Please check the server connection.');
+      }
+    });
+  </script>
+</body>
+</html>

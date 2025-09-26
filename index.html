@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> MEDICONNECT</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <header class="hero-header">
+    <h1 class="main-title"> MEDICONNECT</h1>
+    <p class="subtitle">Your All-in-One Digital Healthcare Platform</p>
+  </header>
+
+  <nav class="navbar">
+    <div class="nav-links">
+      <a href="consult.html"><i class="fa-solid fa-user-md"></i> Consult</a>
+      <a href="ambulance.html"><i class="fa-solid fa-truck-medical"></i> Ambulance</a>
+      <a href="pharmacy.html"><i class="fa-solid fa-pills"></i> Pharmacy</a>
+      <a href="lab.html"><i class="fa-solid fa-vial"></i> Lab</a>
+      <a href="appointment.html"><i class="fa-solid fa-hospital"></i> Appointments</a>
+    </div>
+    <div class="nav-right">
+      <a href="login.html" class="nav-login"><i class="fa-solid fa-user"></i> Login</a>
+      <select id="langSelect" onchange="changeLang()">
+        <option value="en">English</option>
+        <option value="hi">हिंदी</option>
+        <option value="bn">বাংলা</option>
+        <option value="gu">ગુજરાતી</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+        <option value="kn">ಕನ್ನಡ</option>
+        <option value="ml">മലയാളം</option>
+        <option value="mr">मराठी</option>
+        <option value="pa">ਪੰਜਾਬੀ</option>
+      </select>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h2 id="heroTitle">Your Health, Connected</h2>
+    <p id="heroDesc">One platform for consultations, medicines, labs, ambulances & more.</p>
+    <button class="btn" onclick="window.location.href='consult.html'">Get Started</button>
+  </section>
+
+  <section class="features">
+    <div class="card">
+      <i class="fa-solid fa-user-md"></i>
+      <h3 id="f1">Doctor Consultation</h3>
+      <p id="f1d">Video or phone consultations with qualified doctors.</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-truck-medical"></i>
+      <h3 id="f2">24/7 Ambulance</h3>
+      <p id="f2d">Instant ambulance booking during emergencies.</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-pills"></i>
+      <h3 id="f3">Online Pharmacy</h3>
+      <p id="f3d">Order medicines with home delivery.</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-vial"></i>
+      <h3 id="f4">Lab Tests</h3>
+      <p id="f4d">Book and access test reports online.</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-hospital"></i>
+      <h3 id="f5">Hospital Appointments</h3>
+      <p id="f5d">Schedule appointments without hassle.</p>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="contact-info">
+      <h3>Contact Us</h3>
+      <p>Phone: <a href="tel:7319899379">7319899379</a></p>
+      <p>Email: <a href="mailto:sahilkumar620409@gmail.com">sahilkumar620409@gmail.com</a></p>
+    </div>
+  </section>
+
+  <button id="sosBtn" class="sos-button">
+    <i class="fa-solid fa-siren-on"></i> SOS
+  </button>
+  
+</body>
+<script src="script.js"></script>
+</html>
